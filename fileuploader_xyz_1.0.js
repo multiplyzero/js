@@ -296,8 +296,8 @@ qq.FileUploaderBasic = function(o){
         inputName: 'file',
         // messages                
         messages: {
-            typeError: "{file} 不符合规范. 只能上传  {extensions} .",
-            sizeError: "{file} 太大了, 最大允许上传  {sizeLimit} .",
+            typeError: "{file} not allow, file type must in {extensions} .",
+            sizeError: "{file} too large, file size must less than {sizeLimit} .",
             minSizeError: "{file} is too small, minimum file size is {minSizeLimit}.",
             emptyError: "{file} is empty, please select files again without it.",
             onLeave: "The files are being uploaded, if you leave now the upload will be cancelled."            
@@ -1178,7 +1178,7 @@ qq.extend(qq.UploadHandlerForm.prototype, {
         }
         	
         var queryString = qq.obj2url(params, this._options.action+actionPlus);
-		//alert(queryString);
+
         form.setAttribute('action', queryString);
         form.setAttribute('target', iframe.name);
         form.style.display = 'none';
@@ -1279,7 +1279,7 @@ qq.extend(qq.UploadHandlerXhr.prototype, {
         xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
         xhr.setRequestHeader("X-File-Name", encodeURIComponent(name));
         xhr.setRequestHeader("Content-Type", "application/octet-stream");
-        //alert(file + name + queryString);
+
         xhr.send(file);
     },
     _onComplete: function(id, xhr){
