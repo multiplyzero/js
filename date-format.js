@@ -69,11 +69,10 @@
         date.setSeconds(format.sec);
         return date;
     };
-	
-	/**
-	 * default server time zone : GMT+0800 (China Standard Time)
-	 */
-	dateUtils.SERVER_TIME_ZONE = +8;
+    /**
+     * default server time zone : GMT+0800 (China Standard Time)
+     */
+    dateUtils.SERVER_TIME_ZONE = +8;
 
     dateUtils.setServerTimeZone = function (serverTimeZone) {
         this.SERVER_TIME_ZONE = serverTimeZone;
