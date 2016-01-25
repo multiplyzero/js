@@ -1,6 +1,6 @@
 (function (global) {
     var dateUtils = function () {
-		return new dateUtils();
+        return new dateUtils();
     };
 
     /**
