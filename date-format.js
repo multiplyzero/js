@@ -1,12 +1,12 @@
-(function (global) {
-    var dateUtils = function () {
+(function(global) {
+    var dateUtils = function() {
         return new dateUtils();
     };
 
     /**
      * fmt example "yyyy-MM-dd HH:mm:ss"
      */
-    dateUtils.format = function (date, fmt) {
+    dateUtils.format = function(date, fmt) {
         var o = {
             "M+" : date.getMonth() + 1,
             "d+" : date.getDate(),
@@ -19,7 +19,7 @@
         if (/(y+)/.test(fmt)) {
             fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
         }
-        for (var k in o) {
+        for ( var k in o) {
             if (new RegExp("(" + k + ")").test(fmt)) {
                 fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
             }
@@ -27,8 +27,8 @@
         return fmt;
     };
 
-    dateUtils.parseFormat = function (timeStr, fmt) {
-        var regStr = function (r) {
+    dateUtils.parseFormat = function(timeStr, fmt) {
+        var regStr = function(r) {
             var reg = new RegExp(r, 'g');
             if (reg.test(fmt)) {
                 var end = reg.lastIndex;
@@ -48,7 +48,7 @@
             sec : "s+"
         };
 
-        for (var k in o) {
+        for ( var k in o) {
             var r = "(" + o[k] + ")";
             var v = 0;
             if (v = regStr(r)) {
@@ -64,7 +64,7 @@
     /**
      * fmt example "yyyy-MM-dd HH:mm:ss"
      */
-    dateUtils.parseToDate = function (timeStr, fmt) {
+    dateUtils.parseToDate = function(timeStr, fmt) {
         var format = this.parseFormat(timeStr, fmt);
         var date = new Date();
         date.setFullYear(format.year);
@@ -81,21 +81,21 @@
      */
     dateUtils.SERVER_TIME_ZONE = +8;
 
-    dateUtils.setServerTimeZone = function (serverTimeZone) {
+    dateUtils.setServerTimeZone = function(serverTimeZone) {
         this.SERVER_TIME_ZONE = serverTimeZone;
     };
-    dateUtils.getServerTimeZone = function () {
+    dateUtils.getServerTimeZone = function() {
         return this.SERVER_TIME_ZONE;
     };
 
-    dateUtils.serverDateToUTCDate = function (serverDate) {
+    dateUtils.serverDateToUTCDate = function(serverDate) {
         return new Date(serverDate.getTime() - this.SERVER_TIME_ZONE * 60 * 60 * 1000);
     };
 
     /**
      * fmt example "yyyy-MM-dd HH:mm:ss"
      */
-    dateUtils.parseServerToUTCDate = function (timeStr, fmt) {
+    dateUtils.parseServerToUTCDate = function(timeStr, fmt) {
         var format = this.parseFormat(timeStr, fmt);
         var date = new Date();
         date.setUTCFullYear(format.year);
