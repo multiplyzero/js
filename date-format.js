@@ -36,23 +36,29 @@
                 var str = timeStr.substr(end - len, len);
                 return str;
             }
+            return false;
         };
 
-        var year = regStr("(y+)");
-        var month = regStr("(M+)");
-        var day = regStr("(d+)");
-        var hour = regStr("(H+)");
-        var min = regStr("(m+)");
-        var sec = regStr("(s+)");
-
-        return {
-            year : year,
-            month : month,
-            day : day,
-            hour : hour,
-            min : min,
-            sec : sec
+        var o = {
+            year : "y+",
+            month : "M+",
+            day : "d+",
+            hour : "H+",
+            min : "m+",
+            sec : "s+"
         };
+
+        for (var k in o) {
+            var r = "(" + o[k] + ")";
+            var v = 0;
+            if (v = regStr(r)) {
+                o[k] = v;
+            } else {
+                o[k] = 0;
+            }
+        }
+
+        return o;
     };
 
     /**
