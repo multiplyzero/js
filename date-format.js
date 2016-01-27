@@ -1,20 +1,33 @@
 (function(global) {
-    var dateUtils = function() {
-        return new dateUtils();
+    function DateUtils() {
+        /**
+         * default server time zone : GMT+0800 (China Standard Time)
+         */
+        var SERVER_TIME_ZONE = +8;
+
+        this.setServerTimeZone = function(serverTimeZone) {
+            SERVER_TIME_ZONE = serverTimeZone;
+        };
+        this.getServerTimeZone = function() {
+            return SERVER_TIME_ZONE;
+        };
+    }
+
+    DateUtils.trim = function(text) {
+        return text == null ? "" : text.toString().replace(/^\s+/, "").replace(/\s+$/, "");
     };
 
     /**
      * fmt example "yyyy-MM-dd HH:mm:ss"
      */
-    dateUtils.format = function(date, fmt) {
+    DateUtils.prototype.format = function(date, fmt) {
+        fmt = DateUtils.trim(fmt);
         var o = {
             "M+" : date.getMonth() + 1,
             "d+" : date.getDate(),
             "H+" : date.getHours(),
             "m+" : date.getMinutes(),
-            "s+" : date.getSeconds(),
-            "q+" : Math.floor((date.getMonth() + 3) / 3),
-            "S" : date.getMilliseconds()
+            "s+" : date.getSeconds()
         };
         if (/(y+)/.test(fmt)) {
             fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
@@ -27,7 +40,9 @@
         return fmt;
     };
 
-    dateUtils.parseFormat = function(timeStr, fmt) {
+    DateUtils.prototype.parseFormat = function(timeStr, fmt) {
+        timeStr = DateUtils.trim(timeStr);
+        fmt = DateUtils.trim(fmt);
         var regStr = function(r) {
             var reg = new RegExp(r, 'g');
             if (reg.test(fmt)) {
@@ -36,7 +51,6 @@
                 var str = timeStr.substr(end - len, len);
                 return str;
             }
-            return false;
         };
 
         var o = {
@@ -50,12 +64,7 @@
 
         for ( var k in o) {
             var r = "(" + o[k] + ")";
-            var v = 0;
-            if (v = regStr(r)) {
-                o[k] = v;
-            } else {
-                o[k] = 0;
-            }
+            o[k] = regStr(r) || 0;
         }
 
         return o;
@@ -64,7 +73,9 @@
     /**
      * fmt example "yyyy-MM-dd HH:mm:ss"
      */
-    dateUtils.parseToDate = function(timeStr, fmt) {
+    DateUtils.prototype.parseToDate = function(timeStr, fmt) {
+        timeStr = DateUtils.trim(timeStr);
+        fmt = DateUtils.trim(fmt);
         var format = this.parseFormat(timeStr, fmt);
         var date = new Date();
         date.setFullYear(format.year);
@@ -76,26 +87,16 @@
         return date;
     };
 
-    /**
-     * default server time zone : GMT+0800 (China Standard Time)
-     */
-    dateUtils.SERVER_TIME_ZONE = +8;
-
-    dateUtils.setServerTimeZone = function(serverTimeZone) {
-        this.SERVER_TIME_ZONE = serverTimeZone;
-    };
-    dateUtils.getServerTimeZone = function() {
-        return this.SERVER_TIME_ZONE;
-    };
-
-    dateUtils.serverDateToUTCDate = function(serverDate) {
-        return new Date(serverDate.getTime() - this.SERVER_TIME_ZONE * 60 * 60 * 1000);
+    DateUtils.prototype.serverDateToUTCDate = function(serverDate) {
+        return new Date(serverDate.getTime() - this.getServerTimeZone() * 60 * 60 * 1000);
     };
 
     /**
      * fmt example "yyyy-MM-dd HH:mm:ss"
      */
-    dateUtils.parseServerToUTCDate = function(timeStr, fmt) {
+    DateUtils.prototype.parseServerToUTCDate = function(timeStr, fmt) {
+        timeStr = DateUtils.trim(timeStr);
+        fmt = DateUtils.trim(fmt);
         var format = this.parseFormat(timeStr, fmt);
         var date = new Date();
         date.setUTCFullYear(format.year);
@@ -107,5 +108,5 @@
         return this.serverDateToUTCDate(date);
     };
 
-    global.$dateUtils = dateUtils;
+    global.$dateUtils = new DateUtils();
 })(this);
