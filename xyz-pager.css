@@ -1,0 +1,131 @@
+.xyz-pager {
+    float: right;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    width: auto;
+    height: 30px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.xyz-pager a span {
+    height: 30px;
+}
+
+.xyz-pager a:link,.xyz-pager a:visited {
+    color: #666;
+    text-decoration: none
+}
+
+.xyz-pager a:hover {
+    color: #006aaa;
+    text-decoration: underline;
+    border: solid 1px #3e97f9;
+}
+
+.xyz-pager .page_more {
+    width: 15px;
+    float: left;
+    padding: 5px;
+}
+
+.xyz-pager .page_yes {
+    text-align: center;
+    background-color: #3e97f9;
+    color: #fff;
+    font-weight: bold;
+    border: 1px solid #3e97f9;
+    padding: 5px;
+    float: left;
+    margin-right: 5px;
+    min-width: 20px;
+}
+
+.xyz-pager .page_no {
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px;
+    float: left;
+    margin-right: 5px;
+    min-width: 20px;
+}
+
+.xyz-pager .page_last_no {
+    background: url(http://images.onccc.com/link2pic2/images/yiwugou/www/images/page_no.gif) no-repeat 15px 10px;
+    border: 1px solid #ccc;
+    padding: 5px 2px 5px 25px;
+    color: #666;
+    width: 60px;
+    float: left;
+    margin-right: 5px;
+    background-color: #fff;
+}
+
+.xyz-pager .page_last_yes {
+    background: url(http://images.onccc.com/link2pic2/images/yiwugou/www/images/page_last_yes.jpg) no-repeat 15px 10px;
+    border: 1px solid #ccc;
+    padding: 5px 2px 5px 25px;
+    color: #666;
+    width: 60px;
+    float: left;
+    margin-right: 5px;
+    background-color: #fff;
+}
+
+.xyz-pager .page_next_yes {
+    background: url(http://images.onccc.com/link2pic2/images/yiwugou/www/images/page_yes.jpg) no-repeat 68px 10px;
+    border: 1px solid #ccc;
+    padding: 5px 17px 5px 17px;
+    color: #666;
+    width: 60px;
+    float: left;
+    margin-right: 5px;
+    background-color: #fff;
+}
+
+.xyz-pager .page_next_no {
+    background: url(http://images.onccc.com/link2pic2/images/yiwugou/www/images/page_next_no.jpg) no-repeat 68px 10px;
+    border: 1px solid #ccc;
+    padding: 5px 17px 5px 17px;
+    color: #666;
+    width: 60px;
+    float: left;
+    margin-right: 5px;
+    background-color: #fff;
+}
+
+.xyz-pager .page_skip {
+    width: 140px;
+    float: left;
+    margin: 2px 5px;
+    font-size: 14px;
+}
+
+.xyz-pager .page_skip .page_input {
+    width: 24px;
+    height: 24px;
+    border: 1px #ccc solid;
+    margin: 2px;
+    text-align: center;
+}
+
+.xyz-pager .page_skip .page_sup {
+    float: left;
+}
+
+.xyz-pager .page_skip .page_skip_btn {
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px;
+    float: left;
+    margin-left: 2px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.xyz-pager .page_skip .page_skip_btn:hover {
+    color: #006aaa;
+    border: solid 1px #3e97f9;
+}
