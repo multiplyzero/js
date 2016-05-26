@@ -280,7 +280,7 @@ qq.FileUploaderBasic = function(o){
         button: null,
         multiple: true,
         maxConnections: 3,
-        uploadType : 'xhr',
+        uploadType : 'form',
         fileLimit : 10,
         // validation        
         allowedExtensions: [],               
@@ -293,7 +293,7 @@ qq.FileUploaderBasic = function(o){
         onComplete: function(id, fileName, responseJSON){},
         onCancel: function(id, fileName){},
         onError: function(id, fileName, e){},
-        inputName: 'file',
+        inputName: 'imgFile',
         // messages                
         messages: {
             typeError: "{file} not allow, file type must in {extensions} .",
@@ -1081,7 +1081,7 @@ qq.extend(qq.UploadHandlerForm.prototype, {
             
             var fileLimit = self._options.fileLimit;
             if(fileLen > fileLimit){
-                alert("文件最多上传" + fileLimit + "个");
+                alert("max file size:" + fileLimit + "!");
                 this._options.onCancel(id, fileName);
                 return;
             }
